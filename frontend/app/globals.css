@@ -1,0 +1,80 @@
+@import "tailwindcss";
+
+/* Palette lifted from the Marketprod reference: white panels, hairline dividers,
+   near-black text, a single blue accent. Nothing invented. */
+:root {
+  --panel: #ffffff; /* sidebar and list */
+  --canvas: #f5f6f8; /* the detail pane sits back, so the cards can come forward */
+  --well: #ffffff; /* info cards, lifted off the canvas */
+  --line: #e8eaed; /* dividers and card borders */
+  --line-strong: #d9dce1; /* control borders */
+
+  /* Contrast against white, WCAG AA: body text needs 4.5:1, UI/large needs 3:1.
+     The previous values were 2.60 and 1.89 — effectively invisible. */
+  --ink: #111827; /* 17.7:1 — names, values */
+  --muted: #636b78; /* 5.38:1 — roles, labels, email, timeline body */
+  --faint: #8b93a0; /* 3.10:1 — icons at rest only, never text */
+
+  --hover: #f6f7f8; /* row hover, nav hover */
+  --active: #eceef1; /* active nav item, selected row */
+
+  --blue: #2563eb;
+  --blue-hover: #1d4fd7;
+
+  /* Semantic colours also carry text, so they clear 4.5:1 on white like everything else.
+     The eye-picked #ef4444 / #10b981 were 3.76 and 3.44 — pretty, and unreadable. */
+  --ember: #dc2626; /* 4.83:1 — a reply, the one place colour means something */
+  --green: #0a7a5c; /* 5.31:1 — booked, really-sent */
+  --amber: #a16207; /* 4.92:1 — a lead waiting on a human */
+  --amber-soft: #fffbeb;
+
+  /* The OS's own UI face — Segoe UI here, San Francisco on a Mac. Deliberately not a
+     webfont: `next build` would otherwise fetch Inter from Google at build time, so an
+     offline machine (or a blocked network) fails the build. A demo must not depend on
+     that, and the grotesque the reference was drawn in is what every OS already ships. */
+  --font-stack: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial,
+    sans-serif;
+}
+
+@theme inline {
+  --color-panel: var(--panel);
+  --color-canvas: var(--canvas);
+  --color-well: var(--well);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-faint: var(--faint);
+  --color-hover: var(--hover);
+  --color-active: var(--active);
+  --color-blue: var(--blue);
+  --color-blue-hover: var(--blue-hover);
+  --color-ember: var(--ember);
+  --color-green: var(--green);
+  --color-amber: var(--amber);
+  --color-amber-soft: var(--amber-soft);
+
+  --font-sans: var(--font-stack);
+}
+
+body {
+  background: var(--panel);
+  color: var(--ink);
+  font-family: var(--font-stack);
+}
+
+.tnum {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Quiet scrollbars — the reference has no visible chrome inside the panes. */
+.scroll-quiet::-webkit-scrollbar {
+  width: 6px;
+}
+.scroll-quiet::-webkit-scrollbar-track {
+  background: transparent;
+}
+.scroll-quiet::-webkit-scrollbar-thumb {
+  background: #e3e5e8;
+  border-radius: 999px;
+}
